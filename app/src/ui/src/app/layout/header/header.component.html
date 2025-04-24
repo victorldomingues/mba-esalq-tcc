@@ -1,0 +1,16 @@
+<ul class="nav justify-content-center  nav-pills">
+  <li class="nav-item">
+    <a class="nav-link btn-primary " [ngClass]="{'active': menuAtivo === 'home'}" aria-current="page"
+      routerLink="/">Página inicial</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{'active': menuAtivo === 'movimentacoes'}"
+      routerLink="/movimentacoes">Movimentações</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" aria-disabled="true">Olá <span>{{perfil.nome}}</span></a>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link" (click)="sair()">Sair</button>
+  </li>
+</ul>

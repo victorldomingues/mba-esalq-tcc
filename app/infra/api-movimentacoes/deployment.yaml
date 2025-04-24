@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: api-movimentacoes
+    labels:
+      app: api-movimentacoes
+      tags.datadoghq.com/env: "prd"
+      tags.datadoghq.com/service: "api-movimentacoes"
+      tags.datadoghq.com/version: "1.0.0"
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: api-movimentacoes
+        tags.datadoghq.com/env: "prd"
+        tags.datadoghq.com/service: "api-movimentacoes"
+        tags.datadoghq.com/version: "1.0.0"
+        admission.datadoghq.com/enabled: "true"
+      annotations:
+        admission.datadoghq.com/dotnet-lib.version: v3.14.2
+        ad.datadoghq.com/app.logs: '[{"source":"csharp", "service":"api-movimentacoes", "tags":["api:api-movimentacoes"]}]'
+    spec:
+      containers:
+      - name: api-movimentacoes
+        image: victordomingues/esalq-tcc-api-movimentacoes:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        - name: ASPNETCORE_URLS
+          value: http://*:80
+        - name: ConnectionStrings:Postgres
+          value: Server=esalq-postgres-service;Port=5432;Database=movimentacoes_db;User Id=postgres;Password=[DEFINIR_SENHA_POSTGRES];
+        - name: ConnectionStrings:Redis
+          value: redis:6379
+        - name: DD_HOSTNAME
+          value: api-movimentacoes
+        - name: DD_SITE
+          value: us5.datadoghq.com
+        - name: DD_LOGS_INJECTION
+          value: "true"
+        - name: DD_PROFILING_ENABLED
+          value: "true"
+        - name: DD_RUNTIME_METRICS_ENABLED
+          value: "true"
+        - name: IntrospectionEndpoint
+          value: http://api-autenticacao/token_info
+  selector:
+    matchLabels:
+      app: api-movimentacoes

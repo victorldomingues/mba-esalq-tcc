@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  esalq-db:
+    container_name: esalq-db
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_PASSWORD=[DEFINIR_SENHA_POSTGRES]
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres:/var/lib/postgres/data
+      - postgres_config:/etc/postgres
+    networks:
+      - esalq-newtwork
+
+  esalq-cache:
+    image: redis:6.2-alpine
+    container_name: esalq-cache
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes: 
+      - cache:/data
+    networks:
+      - esalq-newtwork
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis-commander
+    environment:
+      - REDIS_HOSTS=local:esalq-cache:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - esalq-cache
+    networks:
+      - esalq-newtwork
+
+  ui:
+    build: ./src/ui
+    container_name: esalq-ui
+    ports:
+      - 4200:4200
+    working_dir: /usr/src/app
+    volumes:
+      - ./src/ui:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+
+volumes:
+  postgres:
+  postgres_config:
+  node_modules:
+  cache:
+    driver: local
+
+networks:
+  esalq-newtwork:
+    driver:
+      bridge
+    name: esalq-newtwork

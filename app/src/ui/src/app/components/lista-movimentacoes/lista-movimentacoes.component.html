@@ -1,0 +1,49 @@
+<div *ngIf="!carregando">
+    <div class="row" *ngFor="let data of movimentacoes | slice:0:limit">
+        <div class="col-md-12">
+            <h3>
+                📅 {{data.dia}}
+            </h3>
+        </div>
+        <div class="card card-transparent ">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-dark  table-striped caption-top">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Forma</th>
+                                <th scope="col">Destinatario</th>
+                                <th scope="col"></th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Data</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let movimentacao of data.movimentacoes">
+                                <th scope="row">{{tipo.get(`${movimentacao.tipo}`)}}</th>
+                                <td>{{forma.get(`${movimentacao.forma}`)}}</td>
+                                <td>{{movimentacao.destinatario}}</td>
+                                <td>
+                                    <span *ngIf="movimentacao.forma !== 3">
+                                        Banco:{{movimentacao.banco}} Cc:{{movimentacao.agencia}}
+                                        {{movimentacao.conta}}-{{movimentacao.dac}}
+                                    </span>
+                                </td>
+                                <td><span
+                                        [class]="{'verde': movimentacao.tipo === 1, 'vermelho': movimentacao.tipo === 2}">{{movimentacao.tipo
+                                        === 1 ? '' : '-'}} {{movimentacao.valor | currency :'R$'}}</span></td>
+                                <td>{{movimentacao.criadoEm | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<span *ngIf="carregando" class="carregando"></span>

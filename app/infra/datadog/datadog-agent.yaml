@@ -1,0 +1,47 @@
+apiVersion: datadoghq.com/v2alpha1
+kind: DatadogAgent
+metadata:
+  name: datadog
+spec:
+  global:
+    clusterName: kind-esalq-cluster
+    site: us5.datadoghq.com
+    credentials:
+      apiSecret:
+        secretName: datadog-secret
+        keyName: api-key
+    kubelet:
+      tlsVerify: false
+  features:
+    logCollection:
+      enabled: true
+      containerCollectAll: true
+    clusterChecks:
+      enabled: true
+    apm:
+      enabled: true
+      unixDomainSocketConfig:
+        path: /var/run/datadog/apm.socket # default
+  override:
+    nodeAgent:
+      env:
+        - name: DD_HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: DD_SITE
+          value: us5.datadoghq.com
+        # - name: DD_CONTAINER_EXCLUDE
+        #   value: "namespace:argocd namespace:kube-system"
+    clusterAgent:
+      extraConfd:
+        configDataMap:
+          postgres.yaml: |-
+            cluster_check: true
+            init_config:
+            instances:
+            - host: <HOST>
+              port: 5432
+              username: datadog
+              password: '[DEFINIR_SENHA_DATADOG]'
+              dbm: true      

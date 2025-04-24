@@ -1,0 +1,44 @@
+@import '../../variaveis.scss';
+
+::ng-deep body {
+    background: #2a2a2a;
+}
+.nav {
+    background: #fff;
+}
+
+.text-bg-secondary{
+    border-top: 0.3rem solid $cor-destaque;
+}
+
+h1{
+    color: $cor-destaque;
+    margin-bottom: 3rem;
+}
+
+.valor{
+    //color: $cor-destaque;
+    font-weight: bold;
+    font-size: 4rem;
+}
+.card {
+    margin-bottom: 1rem;
+}
+.card-transparent{
+    background: none !important;
+    color: #eee;
+    margin-top: 3rem;
+}
+.card-min-h100{
+    min-height: 14rem;
+}
+table tr td, table tr th{
+    background-color: rgba(50, 50, 50, 0.3) !important;
+    color: #eee;
+  }
+  .btn-destaque{
+    background-color: $cor-destaque;
+    border-color: $cor-destaque;
+    color: #fff;
+  }
+

@@ -1,0 +1,21 @@
+@import '../../../variaveis.scss';
+
+.nav{
+    background: #3a3a3a;
+    border-bottom: 0.3rem solid $cor-destaque;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+
+.nav-link{
+    color: $cor-destaque;
+}
+
+.active{
+    background-color: $cor-destaque !important;
+}
+
+.disabled{
+    color: #eee;
+}

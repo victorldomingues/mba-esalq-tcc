@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                <span class="text-secondary">Página</span> inicial
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <app-saldo></app-saldo>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-min-h100 text-bg-secondary">
+                <div class="card-header">Movimente</div>
+                <div class="card-body">
+
+                    <h5 class="card-title">Faça sua movimentação</h5>
+                    <p class="card-text">
+                        <span>Você pode realizar PIX, DOC e TED</span>
+                    </p>
+                    <p>
+                        <a type="button" class="btn btn-destaque btn-primary btn-lg"
+                            routerLink="/nova-movimentacao">Nova movimentação</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-transparent ">
+                <h2>
+                    Ultimas movimentações
+                </h2>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <app-lista-movimentacoes limit="4"></app-lista-movimentacoes>
+        </div>
+    </div>
+</div>

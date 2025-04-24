@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+  labels:
+    app: ui
+    tags.datadoghq.com/env: "prd"
+    tags.datadoghq.com/service: "ui"
+    tags.datadoghq.com/version: "1.0.0"
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: ui
+        tags.datadoghq.com/env: "prd"
+        tags.datadoghq.com/service: "ui"
+        tags.datadoghq.com/version: "1.0.0"
+        admission.datadoghq.com/enabled: "true"
+      annotations:
+        admission.datadoghq.com/dotnet-lib.version: v3.14.2
+        ad.datadoghq.com/app.logs: '[{"source":"angular", "service":"ui", "tags":["ui:ui"]}]'
+    spec:
+      containers:
+        - name: ui
+          image: victordomingues/esalq-tcc-ui:latest
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          env:
+            - name: DD_HOSTNAME
+              value: ui
+            - name: DD_SITE
+              value: us5.datadoghq.com
+            - name: DD_LOGS_INJECTION
+              value: "true"
+            - name: DD_PROFILING_ENABLED
+              value: "true"
+            - name: DD_RUNTIME_METRICS_ENABLED
+              value: "true"
+  selector:
+    matchLabels:
+      app: ui

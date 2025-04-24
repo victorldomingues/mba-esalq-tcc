@@ -1,0 +1,6 @@
+@Api.Saldos_HostAddress = http://localhost:5192
+
+GET {{Api.Saldos_HostAddress}}/saldos/
+Accept: application/json
+
+###

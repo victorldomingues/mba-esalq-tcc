@@ -1,0 +1,105 @@
+<app-header menuAtivo="movimentacoes"></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                <span class="text-secondary">Nova</span> movimentação
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <app-saldo></app-saldo>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card-transparent ">
+                <h2>
+                    Dados da movimentação
+                </h2>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="enviar()">
+        <div class="row">
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="tipo">Tipo de movimentação</label>
+                            <select formControlName="tipo" id="tipo" class="form-control">
+                                <option value="1" selected>Deposito</option>
+                                <option value="2">Saque</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="forma">Forma movimentação</label>
+                            <select formControlName="forma" id="forma" class="form-control">
+                                <option value="1" selected>DOC</option>
+                                <option value="2">TED</option>
+                                <option value="3">PIX</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-7" style="margin-bottom: 30px;">
+                    <label for="valor">Valor</label>
+                    <input formControlName="valor" type="number" class="form-control" id="valor" style=" max-height: 120px; height: 100%; font-size: 4rem; " placeholder="R$ 0,00">
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card-transparent ">
+                        <h2>
+                            Dados do destinatário
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="destinatario">Destinatário</label>
+                <input formControlName="destinatario" type="text" class="form-control" id="destinatario" placeholder="(CHAVE PIX, CPF, NUMERO TELEFONE)">
+            </div>
+
+            <div class="row" *ngIf="form.value.forma != 3">
+
+                <div class="form-group col-md-2">
+                    <label for="banco">Banco</label>
+                    <select formControlName="banco" id="banco" class="form-control">
+                        <option value="001" selected>001: Banco 1</option>
+                        <option value="002">002: Banco 2</option>
+                        <option value="003">003: Banco 3</option>
+                        <option value="004">004: Banco 4</option>
+                        <option value="005">005: Banco 5</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="agencia">Agencia</label>
+                    <input formControlName="agencia" type="text" class="form-control" id="agencia">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="conta">Conta</label>
+                    <input formControlName="conta" type="text" class="form-control" id="conta">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="dac">Dac</label>
+                    <input formControlName="dac" type="text" class="form-control" id="dac">
+                </div>
+            </div>
+
+            <button [disabled]="!form.valid"  type="submit" class="btn btn-primary btn-lg">Concluir movimentação</button>
+
+
+        </div>
+    </form>
+</div>

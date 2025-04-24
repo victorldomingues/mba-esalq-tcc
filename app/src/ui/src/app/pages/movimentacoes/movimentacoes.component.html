@@ -1,0 +1,29 @@
+<app-header menuAtivo="movimentacoes"></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                <span class="text-secondary">Movimentações</span> 
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <app-saldo></app-saldo>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-transparent ">
+                <h2>
+                    Todas as movimentações
+                    <a type="button" class="btn btn-destaque btn-primary " style=" float: right;" routerLink="/nova-movimentacao">Nova movimentação</a>
+                </h2>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <app-lista-movimentacoes></app-lista-movimentacoes>
+        </div>
+    </div>
+</div>

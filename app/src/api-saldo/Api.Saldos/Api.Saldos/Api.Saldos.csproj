@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+        <PackageReference Include="Serilog.Settings.Configuration" Version="9.0.1-dev-02317" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="6.0.1-dev-00953" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.13" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Api.Saldos.Testes"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\artefatos\Artefatos\Artefatos.Identidade\Artefatos.Identidade.csproj" />
+      <ProjectReference Include="..\..\..\observabilidade\ObservabilidadeAspire\ObservabilidadeAspire.ServiceDefaults\ObservabilidadeAspire.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\Api.Saldos.Aplicacao\Api.Saldos.Aplicacao.csproj" />
+      <ProjectReference Include="..\Api.Saldos.Dominio\Api.Saldos.Dominio.csproj" />
+      <ProjectReference Include="..\Api.Saldos.Infra.Dados\Api.Saldos.Infra.Dados.csproj" />
+    </ItemGroup>
+
+</Project>

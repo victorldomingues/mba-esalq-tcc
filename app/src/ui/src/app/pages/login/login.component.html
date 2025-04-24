@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="row d-flex justify-content-center mt-5">
+		<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+			<div class="card py-3 px-2">
+				<p class="text-center mb-3 mt-2">Login</p>
+
+				<form class="myform" [formGroup]="form" (ngSubmit)="enviar()">
+
+                    <div class="form-group">
+    					<input formControlName="cpf" type="text" class="form-control" placeholder="CPF">
+  					</div>
+				
+ 					<div class="form-group">
+    					<input formControlName="senha" type="password" class="form-control" placeholder="Senha">
+  					</div>
+                    <div class="row">
+                        <div class="form-group mt-3">
+                            <button [disabled]="!form.valid" type="submit" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i>Login</small></button>
+                        </div>
+                    </div>
+  					<div class="row foot">
+  						<div class="col-md-6 col-12">
+  							<div class="form-group">
+                                Não tem cadastro?
+  							</div>
+  						</div>
+  						<div class="col-md-6 col-12 bn" > <a routerLink="/cadastro">Cadastrar</a> </div>
+  					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

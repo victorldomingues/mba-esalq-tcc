@@ -1,0 +1,6 @@
+@Api.Movimentacoes_HostAddress = http://localhost:5151
+
+GET {{Api.Movimentacoes_HostAddress}}/movimentacoes/
+Accept: application/json
+
+###

@@ -1,0 +1,9 @@
+<div class="card card-min-h100 text-bg-secondary">
+    <div class="card-header">Atualizado em: <span *ngIf="saldo?.atualizadoEm">{{saldo?.atualizadoEm  | date: 'dd/MM/yyyy HH:mm:ss'}}</span></div>
+    <div class="card-body">
+        <h5 class="card-title">Saldo</h5>
+        <p class="card-text">
+            <span class="carregando"  *ngIf="!saldo?.valor"></span>
+            <span class="valor" *ngIf="saldo?.valor"> {{saldo.valor | currency : 'R$'}}</span></p>
+    </div>
+</div>

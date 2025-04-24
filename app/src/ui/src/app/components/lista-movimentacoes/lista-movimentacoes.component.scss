@@ -1,0 +1,14 @@
+@import '../../layout/layout-paginas.scss';
+@import '../../layout/spinner.scss';
+@import '../../../variaveis.scss';
+.verde{
+    color: greenyellow;
+}
+
+.vermelho{
+    color: red;
+}
+h3 {
+    margin-top: 1.5rem;
+    color: $cor-destaque;
+}

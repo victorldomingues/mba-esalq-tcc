@@ -1,0 +1,41 @@
+@import '../../layout/layout-paginas.scss';
+@import '../../../variaveis.scss';
+.form-control{
+	border: 1px solid #57557A;
+	border-radius: 3px;
+    background: #6b6b6b;
+    opacity: 0.4;
+	margin-bottom: 20px;
+	letter-spacing: 1px;
+	color: #fff !important;
+}
+
+.form-control::placeholder {
+    color: #fff;
+}
+
+.form-control:focus {
+    border: 1px solid #6b6b6b;
+    border-radius: 3px;
+    box-shadow: none;
+    color:#fff;
+    letter-spacing: 1px;
+    background: $cor-destaque;
+    opacity: 1;
+}
+
+.bn {
+    text-decoration: underline;
+}
+
+.bn:hover {
+    cursor: pointer;
+}
+
+.form-check-input {
+    margin-top: 8px !important;
+}
+
+label {
+    color: #eee;
+}

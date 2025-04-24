@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-esalq-api-movimentacoes
+  annotations:
+    kubernetes.io/ingress.class: nginx    
+    nginx.ingress.kubernetes.io/rewrite-target: /$2 # this line use the group
+    nginx.ingress.kubernetes.io/use-regex: "true" 
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /api-movimentacoes(/|$)(.*)
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: api-movimentacoes
+            port:
+              number: 80
