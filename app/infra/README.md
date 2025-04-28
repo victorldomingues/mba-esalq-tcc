@@ -84,7 +84,7 @@ argocd login localhost:8000
 Adicionar repositorio 
 
 ```bash
-argocd repo add https://github.com/victorldomingues/tcc-mba-esalq.git --name tcc-mba-esalq  --username not-used --password [TOKEN]
+argocd repo add https://github.com/victorldomingues/mba-esalq-tcc.git --name mba-esalq-tcc  --username not-used --password [TOKEN]
 ```
 
 Informações do contexto
@@ -115,7 +115,7 @@ ou
 Subir Banco
 
 ```bash
-argocd app create postgres --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/postgres --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create postgres --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/postgres --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
 ```bash
@@ -125,45 +125,45 @@ kubectl create secret generic esalq-postgres-secret --from-literal=POSTGRES_PASS
 Subir Redis
 
 ```bash
-argocd app create redis --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/redis --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create redis --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/redis --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
 Subir api cadastro
 
 ```bash
-argocd app create api-cadastro --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/api-cadastro --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create api-cadastro --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/api-cadastro --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
 
   Subir api autenticacao
 
 ```bash
-argocd app create api-autenticacao --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/api-autenticacao --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create api-autenticacao --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/api-autenticacao --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
   Subir api saldo
 
 ```bash
-argocd app create api-saldo --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/api-saldo --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create api-saldo --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/api-saldo --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
   Subir api movimentacoes
 
 ```bash
-argocd app create api-movimentacoes --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/api-movimentacoes --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create api-movimentacoes --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/api-movimentacoes --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
   Subir ui
 
 ```bash
-argocd app create ui --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/ui --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create ui --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/ui --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
 
 # INGRESS NGINX
 
 ```bash
-argocd app create ingress-nginx --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/ingress --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create ingress-nginx --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/ingress --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 <!--
 ou
@@ -205,7 +205,7 @@ kubectl create secret generic datadog-secret --from-literal api-key=<DATADOG_API
 4. Deploy Agent
 
 ```shell 
-argocd app create datadog --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/datadog --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app create datadog --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/datadog --dest-server https://kubernetes.default.svc --dest-namespace default
 ```
 
 
@@ -221,7 +221,7 @@ https://docs.datadoghq.com/database_monitoring/setup_postgres/selfhosted/?tab=ku
 2: https://surajsoni3332.medium.com/setting-up-elk-stack-on-kubernetes-a-step-by-step-guide-227690eb57f4
 
 
-`argocd app create elk --repo https://github.com/victorldomingues/tcc-mba-esalq.git --path app/infra/elk --dest-server https://kubernetes.default.svc --dest-namespace default`
+`argocd app create elk --repo https://github.com/victorldomingues/mba-esalq-tcc.git --path app/infra/elk --dest-server https://kubernetes.default.svc --dest-namespace default`
 
 
 
